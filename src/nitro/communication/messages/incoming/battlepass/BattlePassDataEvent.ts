@@ -1,15 +1,11 @@
-import { MessageEvent } from '@nitrots/nitro-renderer';
-import { BattlePassParser } from '../../parser/battlepass/BattlePassParser';
+import { MessageEvent } from '../../../../../events/core/MessageEvent';
+import { BattlePassDataParser } from '../../parser/battlepass/BattlePassDataParser';
 
 export class BattlePassDataEvent extends MessageEvent
 {
-    constructor(callBack: Function)
+    constructor(callback: (event: BattlePassDataEvent) => void)
     {
-        super(callBack, BattlePassParser);
-    }
-
-    public getParser(): BattlePassParser
-    {
-        return this.parser as BattlePassParser;
+        console.log('[NITRO] BattlePassDataEvent constructed');
+        super(callback, BattlePassDataParser);
     }
 }

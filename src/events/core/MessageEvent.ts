@@ -1,11 +1,13 @@
-import { IConnection, IMessageEvent, IMessageParser } from '../../api';
+import { IMessageEvent } from '../../api/communication/IMessageEvent';
+import { IMessageParser } from '../../api/communication/IMessageParser';
+import { IConnection } from '../../api/communication/IConnection';
 
 export class MessageEvent implements IMessageEvent
 {
-    private _callBack: Function;
-    private _parserClass: Function;
-    private _parser: IMessageParser;
-    private _connection: IConnection;
+    protected _callBack: Function | null;
+    protected _parserClass: { new(): IMessageParser } | null;
+    protected _parser: IMessageParser | null;
+    protected _connection: IConnection | null;
 
     constructor(callBack: Function, parser: { new(): IMessageParser })
     {
@@ -23,17 +25,17 @@ export class MessageEvent implements IMessageEvent
         this._connection = null;
     }
 
-    public get callBack(): Function
+    public get callBack(): Function | null
     {
         return this._callBack;
     }
 
-    public get parserClass(): Function
+    public get parserClass(): { new(): IMessageParser } | null
     {
         return this._parserClass;
     }
 
-    public get parser(): IMessageParser
+    public get parser(): IMessageParser | null
     {
         return this._parser;
     }
@@ -43,7 +45,7 @@ export class MessageEvent implements IMessageEvent
         this._parser = parser;
     }
 
-    public get connection(): IConnection
+    public get connection(): IConnection | null
     {
         return this._connection;
     }

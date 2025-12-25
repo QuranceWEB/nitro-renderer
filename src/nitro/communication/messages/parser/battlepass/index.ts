@@ -1,1 +1,1 @@
-export * from './BattlePassParser';
+export * from './BattlePassDataParser';
