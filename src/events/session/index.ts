@@ -13,6 +13,7 @@ export * from './RoomSessionEvent';
 export * from './RoomSessionFavoriteGroupUpdateEvent';
 export * from './RoomSessionFriendRequestEvent';
 export * from './RoomSessionNestBreedingSuccessEvent';
+export * from './LevelProgressEvent';
 export * from './RoomSessionPetBreedingEvent';
 export * from './RoomSessionPetBreedingResultEvent';
 export * from './RoomSessionPetCommandsUpdateEvent';

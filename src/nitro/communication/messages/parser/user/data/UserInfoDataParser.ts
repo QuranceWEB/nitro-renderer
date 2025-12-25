@@ -16,6 +16,9 @@ export class UserInfoDataParser
     private _lastAccessDate: string;
     private _canChangeName: boolean;
     private _safetyLocked: boolean;
+    private _level: number;
+    private _experience: number;
+    private _nextLevelXp: number;
 
     constructor(wrapper: IMessageDataWrapper)
     {
@@ -63,6 +66,9 @@ export class UserInfoDataParser
         this._lastAccessDate = wrapper.readString();
         this._canChangeName = wrapper.readBoolean();
         this._safetyLocked = wrapper.readBoolean();
+        this._level = wrapper.readInt();
+        this._experience = wrapper.readInt();
+        this._nextLevelXp = wrapper.readInt();
 
         return true;
     }
@@ -136,4 +142,20 @@ export class UserInfoDataParser
     {
         return this._safetyLocked;
     }
+
+    public get level(): number
+    {
+        return this._level;
+    }
+
+    public get experience(): number
+    {
+        return this._experience;
+    }
+
+    public get nextLevelXp(): number
+    {
+        return this._nextLevelXp;
+    }
+
 }

@@ -16,6 +16,9 @@ export class UserProfileParser implements IMessageParser
     private _groups: HabboGroupEntryData[];
     private _secondsSinceLastVisit: number;
     private _openProfileWindow: boolean;
+    private _level: number;
+    private _experience: number;
+    private _nextLevelXp: number;
 
     public flush(): boolean
     {
@@ -32,6 +35,9 @@ export class UserProfileParser implements IMessageParser
         this._groups = [];
         this._secondsSinceLastVisit = 0;
         this._openProfileWindow = false;
+        this._level = 0;
+        this._experience = 0;
+        this._nextLevelXp = 0;
 
         return true;
     }
@@ -56,6 +62,11 @@ export class UserProfileParser implements IMessageParser
         {
             this._groups.push(new HabboGroupEntryData(wrapper));
         }
+
+        // SHIFT LEVEL SYSTEM
+        this._level = wrapper.readInt();
+        this._experience = wrapper.readInt();
+        this._nextLevelXp = wrapper.readInt();
 
         this._secondsSinceLastVisit = wrapper.readInt();
         this._openProfileWindow = wrapper.readBoolean();
@@ -102,6 +113,22 @@ export class UserProfileParser implements IMessageParser
     {
         return this._isMyFriend;
     }
+
+    public get level(): number
+    {
+        return this._level;
+    }
+
+    public get experience(): number
+    {
+        return this._experience;
+    }
+
+    public get nextLevelXp(): number
+    {
+        return this._nextLevelXp;
+    }
+
 
     public get requestSent(): boolean
     {
